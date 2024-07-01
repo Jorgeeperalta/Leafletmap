@@ -42,13 +42,32 @@
             console.log("Your browser doesn't support geolocation feature!")
         } else {
             setInterval(() => {
-                navigator.geolocation.getCurrentPosition(getPosition)
+                navigator.geolocation.getCurrentPosition(getPosition), getLocation()
             }, 5000);
         };
         var marker, circle, lat, long, accuracy;
+        
+       //////////////////
+       function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  console.log( "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude);
+}
+
+       ////////////////////
+
+
+
 
         function getPosition(position) {
-            // console.log(position)
+             console.log(position)
             lat = position.coords.latitude
             long = position.coords.longitude
             accuracy = position.coords.accuracy
